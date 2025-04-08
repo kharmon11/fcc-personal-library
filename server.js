@@ -9,6 +9,8 @@ const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 
+const connectDB = require('./db');
+
 const app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -17,6 +19,8 @@ app.use(cors({origin: '*'})); //USED FOR FCC TESTING PURPOSES ONLY!
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+connectDB();
 
 //Index page (static HTML)
 app.route('/')
